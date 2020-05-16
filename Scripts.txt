@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BallControl : MonoBehaviour
+{
+    //variables públicas
+
+    public float ballforce = 1.0f;
+
+    //variables privadas
+
+    private Vector3 horizontalInput, verticalInput;
+
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update ()
+    {
+        //empujamos la bola en la dirección que pulse el usuario
+
+        //1º calculamos el input horizontal y vertical
+        horizontalInput = transform.right * Input.GetAxis("Horizontal");
+        verticalInput = transform.forward * Input.GetAxis("Vertical");
+
+        //2º empujamos la bola con la fuerza de ballforce
+        GetComponent<Rigidbody>().AddForce( (horizontalInput+verticalInput) * ballforce );
+          
+	}
+}
